@@ -6,11 +6,11 @@ import { Icon, Toolbar } from '@dslate/component';
 import {
   clearBlockProps,
   getBlockProps,
+  isStart as coreIsStart,
   setBlockProps,
   useMessage,
 } from '@dslate/core';
-import type { Descendant } from 'slate';
-import { Editor, Range } from 'slate';
+import { Descendant, Editor, Range, Transforms } from 'slate';
 import { useSlate } from 'slate-react';
 
 const DEFAULT_VALUE = 0;
@@ -105,7 +105,17 @@ const withIndent = (editor: Editor) => {
 const onKeyDown = (e: React.KeyboardEvent, editor: Editor) => {
   if (isHotkey('tab', e)) {
     e.preventDefault();
-    increase(editor);
+    if (coreIsStart(editor, 'paragraph')) {
+      increase(editor);
+    } else {
+      if (!editor.selection) return;
+      if (Range.isExpanded(editor.selection)) {
+        Transforms.delete(editor);
+        Transforms.insertText(editor, '\t');
+      } else {
+        Transforms.insertText(editor, '\t');
+      }
+    }
     return;
   }
 
