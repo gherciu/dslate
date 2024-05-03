@@ -1,5 +1,15 @@
 # @dslate/antd
 
+## 2.0.11
+
+### Patch Changes
+
+- 修复 tab 不能输入\t 制表符问题
+- Updated dependencies
+  - @dslate/component@2.0.11
+  - @dslate/core@2.0.11
+  - @dslate/plugin@2.0.11
+
 ## 2.0.10
 
 ### Patch Changes
