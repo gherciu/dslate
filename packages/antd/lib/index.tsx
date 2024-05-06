@@ -67,6 +67,7 @@ export const DefaultToolbar = [
   'link',
   'blockquote',
   'hr',
+  'table',
 ];
 
 export default forwardRef<DSlateRef, AntdStyleDSlateProps>(

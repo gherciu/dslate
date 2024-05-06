@@ -1,6 +1,6 @@
-import type { NodeEntry } from "slate";
-import { Editor, Transforms, Element } from "slate";
-import type { DSlateCustomElement } from "../typing";
+import type { NodeEntry } from 'slate';
+import { Editor, Element, Transforms } from 'slate';
+import type { DSlateCustomElement } from '../typing';
 
 export const isBlockActive = (editor: Editor, format: string) => {
   const { selection } = editor;
@@ -13,7 +13,24 @@ export const isBlockActive = (editor: Editor, format: string) => {
         Element.isElement(n) &&
         Editor.isBlock(editor, n) &&
         n.type === format,
-    })
+    }),
+  );
+
+  return !!match;
+};
+
+export const isInlineActive = (editor: Editor, format: string) => {
+  const { selection } = editor;
+  if (!selection) return false;
+
+  const [match] = Array.from(
+    Editor.nodes(editor, {
+      match: (n) =>
+        !Editor.isEditor(n) &&
+        Element.isElement(n) &&
+        Editor.isInline(editor, n) &&
+        n.type === format,
+    }),
   );
 
   return !!match;
@@ -31,14 +48,14 @@ export const toggleBlock = (editor: Editor, format: string) => {
         Element.isElement(n) &&
         Editor.isBlock(editor, n) &&
         n.type === (isActive ? format : editor.defaultElement),
-    }
+    },
   );
 };
 
 export const getBlockProps = (
   editor: Editor,
   format: string,
-  defaultValue: any
+  defaultValue: any,
 ) => {
   const { selection } = editor;
 
@@ -73,7 +90,7 @@ export const setBlockProps = (editor: Editor, format: string, value: any) => {
         !Editor.isEditor(n) &&
         Element.isElement(n) &&
         Editor.isBlock(editor, n),
-    }
+    },
   );
 };
 

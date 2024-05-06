@@ -1,7 +1,7 @@
 import { Icon, Popover, Textarea, Toolbar } from '@dslate/component';
 import {
   DSlatePlugin,
-  isBlockActive,
+  isInlineActive,
   Locales,
   RenderElementPropsWithStyle,
   useMessage,
@@ -65,7 +65,7 @@ const ToolbarButton = () => {
 
   const toggle = () => {
     if (!editor.selection) return;
-    const isActive = isBlockActive(editor, TYPE);
+    const isActive = isInlineActive(editor, TYPE);
     if (isActive) {
       remove(editor);
     } else {
@@ -76,7 +76,7 @@ const ToolbarButton = () => {
   return (
     <Toolbar.Button
       tooltip={getMessage('latex', 'Latex')}
-      active={isBlockActive(editor, TYPE)}
+      active={isInlineActive(editor, TYPE)}
       onClick={toggle}
       icon={<Icon type="icon-icon_adddec" />}
     />

@@ -15,6 +15,7 @@ import { LineHeightPlugin } from './plugins/line-height';
 import { LinkPlugin } from './plugins/link';
 import { ListPlugin } from './plugins/list';
 import { ParagraphPlugin } from './plugins/paragraph';
+import { TablePlugin } from './plugins/table';
 import { TextAlignPlugin } from './plugins/text-align';
 import { TodoListPlugin } from './plugins/todo-list';
 
@@ -38,4 +39,5 @@ export default {
   HrPlugin,
   LineHeightPlugin,
   LatexPlugin,
+  TablePlugin,
 };

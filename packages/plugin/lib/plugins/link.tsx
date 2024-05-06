@@ -4,7 +4,7 @@ import type {
   NormalizeNode,
   RenderElementPropsWithStyle,
 } from '@dslate/core';
-import { isBlockActive, Locales, useMessage } from '@dslate/core';
+import { isInlineActive, Locales, useMessage } from '@dslate/core';
 import type { NodeEntry } from 'slate';
 import { Editor, Node, Path, Point, Range, Text, Transforms } from 'slate';
 import { ReactEditor, useSelected, useSlate } from 'slate-react';
@@ -17,7 +17,7 @@ const ToolbarButton = () => {
 
   const toggle = () => {
     if (!editor.selection) return;
-    const active = isBlockActive(editor, TYPE);
+    const active = isInlineActive(editor, TYPE);
 
     if (active) {
       Transforms.unwrapNodes(editor, {
@@ -49,7 +49,7 @@ const ToolbarButton = () => {
   return (
     <Toolbar.Button
       tooltip={getMessage('link', '链接')}
-      active={isBlockActive(editor, TYPE)}
+      active={isInlineActive(editor, TYPE)}
       onClick={toggle}
       icon={<Icon type="icon-link1" />}
     />
@@ -181,6 +181,7 @@ const withPlugin = (editor: Editor) => {
 
   return editor;
 };
+
 const LinkPlugin: DSlatePlugin = {
   type: TYPE,
   nodeType: 'element',
