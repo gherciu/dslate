@@ -70,7 +70,7 @@ export const DefaultToolbar = [
 ];
 
 export default forwardRef<DSlateRef, AntdStyleDSlateProps>(
-  ({ toolbar = DefaultToolbar, ...props }, ref) => {
+  ({ toolbar = DefaultToolbar, pluginProps, ...props }, ref) => {
     const context = useContext(ConfigContext);
 
     const mixContext = useMemo(() => {
@@ -86,8 +86,12 @@ export default forwardRef<DSlateRef, AntdStyleDSlateProps>(
         locales: mergeLocalteFromPlugins(locales, plugins),
         plugins,
         namespace: NAMESPACE,
+        pluginProps: {
+          ...(context?.pluginProps || {}),
+          ...(pluginProps || {}),
+        },
       };
-    }, [context]);
+    }, [context, pluginProps]);
 
     return (
       <ConfigProvider value={mixContext}>

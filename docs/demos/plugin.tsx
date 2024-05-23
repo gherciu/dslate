@@ -63,7 +63,14 @@ export default () => {
       value={{
         ...defaultConfig,
         plugins: [...Object.values<DSlatePlugin>(DefaultPlugin), CustomPlugin],
-        pluginProps: {
+      }}
+    >
+      <DSlate
+        ref={ref}
+        value={value}
+        onChange={setValue}
+        toolbar={[...DefaultToolbar, 'custom']}
+        pluginProps={{
           color: { colors: ['#000000', '#0969da', '#da3109'] },
           'background-color': { colors: ['#000000', '#0969da', '#da3109'] },
           img: {
@@ -72,14 +79,7 @@ export default () => {
           paragraph: {
             tag: 'p',
           },
-        },
-      }}
-    >
-      <DSlate
-        ref={ref}
-        value={value}
-        onChange={setValue}
-        toolbar={[...DefaultToolbar, 'custom']}
+        }}
       />
 
       <br />
