@@ -1,5 +1,4 @@
-import type { DSlateProps } from "@dslate/core";
-import type { ProgressProps, ShowCountProps } from "@dslate/core";
+import type { DSlateProps, ProgressProps, ShowCountProps } from '@dslate/core';
 
 export interface AntdStyleDSlateProps extends DSlateProps {
   toolbar?: string[];
@@ -9,4 +8,5 @@ export interface AntdStyleDSlateProps extends DSlateProps {
   placeholder?: string;
   progress?: ProgressProps;
   className?: string;
+  pluginProps?: Record<string, any>;
 }

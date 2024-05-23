@@ -1,5 +1,13 @@
 # @dslate/component
 
+## 2.0.12
+
+### Patch Changes
+
+- props support PluginProps
+- Updated dependencies
+  - @dslate/core@2.0.12
+
 ## 2.0.11
 
 ### Patch Changes

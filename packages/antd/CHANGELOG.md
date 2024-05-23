@@ -1,5 +1,15 @@
 # @dslate/antd
 
+## 2.0.12
+
+### Patch Changes
+
+- props support PluginProps
+- Updated dependencies
+  - @dslate/component@2.0.12
+  - @dslate/core@2.0.12
+  - @dslate/plugin@2.0.12
+
 ## 2.0.11
 
 ### Patch Changes
