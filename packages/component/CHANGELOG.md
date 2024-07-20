@@ -1,5 +1,13 @@
 # @dslate/component
 
+## 2.0.13
+
+### Patch Changes
+
+- 修复 latex 重复渲染
+- Updated dependencies
+  - @dslate/core@2.0.13
+
 ## 2.0.12
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @dslate/core
 
+## 2.0.13
+
+### Patch Changes
+
+- 修复 latex 重复渲染
+
 ## 2.0.12
 
 ### Patch Changes
