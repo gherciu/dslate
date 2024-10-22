@@ -173,8 +173,8 @@ const Img = ({
      */
     setDraggable({
       status: false,
-      width: image.current?.width,
-      height: image.current?.height,
+      width: image.current?.offsetWidth,
+      height: image.current?.offsetHeight,
     });
   }, [selected, element.imgWidth, element.imgHeight]);
 
@@ -183,17 +183,23 @@ const Img = ({
    */
   const onImageLoad = () => {
     const defaultWidth = props?.defaultWidth;
-    let width = String(image.current?.width ?? '');
-    let height = String(image.current?.height ?? '');
 
-    if (!width || !height) return;
+    const offsetWidth = image.current?.offsetWidth;
+    const offsetHeight = image.current?.offsetHeight;
 
-    if (defaultWidth) {
-      ({ width, height } = resize({ width, height }, 'width', defaultWidth));
+    if (!offsetWidth || !offsetHeight) return;
+
+    let width = element.imgWidth;
+    let height = element.imgHeight;
+
+    if (!width || !height) {
+      width = offsetWidth;
+      height = offsetHeight;
+
+      if (defaultWidth) {
+        ({ width, height } = resize({ width, height }, 'width', defaultWidth));
+      }
     }
-
-    if (element.imgWidth) width = element.imgWidth;
-    if (element.imgHeight) height = element.imgHeight;
 
     setEditable((pre) => {
       return {
@@ -203,18 +209,20 @@ const Img = ({
       };
     });
 
-    setDraggable({
-      ...draggable,
-      width: Number(width),
-      height: Number(height),
-    });
-
     updateSize({
       width,
       height,
     });
 
     setLoading(false);
+
+    setTimeout(() => {
+      setDraggable({
+        ...draggable,
+        width: image.current?.offsetWidth,
+        height: image.current?.offsetHeight,
+      });
+    }, 0);
   };
 
   const updateUrl = async (option: UploadRequestOption) => {

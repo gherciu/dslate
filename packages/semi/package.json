@@ -45,7 +45,7 @@
     "@douyinfe/semi-ui": ">=2.28.1",
     "react": ">=16.9.0",
     "react-dom": ">=16.9.0",
-    "slate": ">=0.90.0",
-    "slate-react": ">=0.90.0"
+    "slate": ">=0.103.0",
+    "slate-react": ">=0.104.0"
   }
 }
