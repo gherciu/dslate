@@ -1,13 +1,15 @@
-import type { UploadFunc, UploadRequestOption } from "../typing";
-import { base64file } from ".";
+import { base64file, blobfile } from '.';
+import type { UploadFunc, UploadRequestOption } from '../typing';
 
 export const promiseUploadFunc = (
   options: UploadRequestOption,
   customUploadRequest?: UploadFunc,
-  setPercent?: (p: number) => void
+  setPercent?: (p: number) => void,
+  defaultType: 'dataurl' | 'bloburl' | false = 'dataurl',
 ) => {
   const { onProgress, onError, onSuccess } = options;
   return new Promise<{ url?: string }>((resolve, reject) => {
+    setPercent?.(1);
     const args = {
       ...options,
       onProgress: (e: { percent?: number }) => {
@@ -29,7 +31,12 @@ export const promiseUploadFunc = (
     if (customUploadRequest) {
       customUploadRequest(args);
     } else {
-      base64file(args);
+      if (defaultType === 'dataurl') base64file(args);
+      if (defaultType === 'bloburl') blobfile(args);
+      alert('not support upload function');
+      reject('not support upload function');
+      onError?.(new Error('not support upload function'));
+      setPercent?.(-1);
     }
   });
 };

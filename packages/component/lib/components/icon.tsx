@@ -1,5 +1,5 @@
-import { ConfigContext } from "@dslate/core";
-import { useContext, useEffect } from "react";
+import { ConfigContext } from '@dslate/core';
+import { useContext, useEffect } from 'react';
 
 const inited: string[] = [];
 
@@ -12,17 +12,20 @@ const Icon = (props: IconProps) => {
   const { iconScriptUrl } = useContext(ConfigContext);
 
   const initScript = () => {
+    if (!iconScriptUrl) return;
     let urls: any = iconScriptUrl;
-    if (typeof urls === "string") urls = [urls];
+    if (typeof urls === 'string') urls = [urls];
 
-    for (const url of urls) {
-      if (inited.includes(url)) continue;
-      let script = document.createElement("script");
-      script.type = "text/javascript";
-      script.async = true;
-      script.src = url;
-      document.head.appendChild(script);
-      inited.push(url);
+    if (urls?.length) {
+      for (const url of urls) {
+        if (inited.includes(url)) continue;
+        let script = document.createElement('script');
+        script.type = 'text/javascript';
+        script.async = true;
+        script.src = url;
+        document.head.appendChild(script);
+        inited.push(url);
+      }
     }
   };
 
@@ -33,11 +36,11 @@ const Icon = (props: IconProps) => {
   return (
     <svg
       style={{
-        width: "1em",
-        height: "1em",
-        verticalAlign: "-0.15em",
-        fill: "currentColor",
-        overflow: "hidden",
+        width: '1em',
+        height: '1em',
+        verticalAlign: '-0.15em',
+        fill: 'currentColor',
+        overflow: 'hidden',
         ...(props?.style ?? {}),
       }}
     >

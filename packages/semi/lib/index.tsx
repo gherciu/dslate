@@ -62,6 +62,7 @@ export const DefaultToolbar = [
   'line-height',
   'divider',
   'img',
+  'video',
   'link',
   'blockquote',
   'hr',
@@ -79,7 +80,6 @@ export default forwardRef<DSlateRef, SemiStyleDSlateProps>(
       const locales = context.locales ? context.locales : DefaultLocales;
 
       return {
-        iconScriptUrl: '//at.alicdn.com/t/c/font_3062978_igshjiflyft.js',
         ...context,
         locales: mergeLocalteFromPlugins(locales, plugins),
         plugins,

@@ -17,7 +17,7 @@ import { ListPlugin } from './plugins/list';
 import { ParagraphPlugin } from './plugins/paragraph';
 import { TextAlignPlugin } from './plugins/text-align';
 import { TodoListPlugin } from './plugins/todo-list';
-
+import { VideoPlugin } from './plugins/video';
 export default {
   HistoryPlugin,
   ClearPlugin,
@@ -33,6 +33,7 @@ export default {
   TextIndentPlugin,
   TodoListPlugin,
   ImgPlugin,
+  VideoPlugin,
   LinkPlugin,
   BlockquotePlugin,
   HrPlugin,
